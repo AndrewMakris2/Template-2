@@ -1,26 +1,31 @@
-import { esc, sectionLabel } from './utils.js';
+import { esc, sectionLabel, ornament } from './utils.js';
 import { icon } from './icons.js';
 
+// Cycled per image to give the masonry columns an uneven, collected rhythm.
+const shapes = ['aspect-[4/5]', 'aspect-[3/4] rounded-t-full', 'aspect-square', 'aspect-[2/3]', 'aspect-[4/5]', 'aspect-[3/4]'];
+
+/** Staggered masonry gallery with arched accents. */
 export function Gallery({ gallery }) {
   const items = gallery.images
     .map(
       (img, i) => `
-      <li>
-        <button type="button" class="group relative block aspect-[4/5] w-full overflow-hidden bg-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent" data-lightbox-item="${i}" data-full="${esc(img.full || img.src)}" aria-label="${esc(`${gallery.openImageLabel}: ${img.alt}`)}">
-          <img src="${esc(img.src)}" alt="${esc(img.alt)}" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" loading="lazy" decoding="async" width="800" height="1000" />
+      <li class="mb-4 break-inside-avoid md:mb-6">
+        <button type="button" class="group relative block w-full overflow-hidden bg-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${shapes[i % shapes.length]}" data-lightbox-item="${i}" data-full="${esc(img.full || img.src)}" aria-label="${esc(`${gallery.openImageLabel}: ${img.alt}`)}">
+          <img src="${esc(img.src)}" alt="${esc(img.alt)}" class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04] group-hover:opacity-90" loading="lazy" decoding="async" width="800" height="1000" />
         </button>
       </li>`,
     )
     .join('');
 
   return `
-<section id="gallery" class="scroll-mt-16 bg-cream py-24 md:scroll-mt-20 md:py-36" aria-labelledby="gallery-heading">
-  <div class="mx-auto max-w-7xl px-5 md:px-10">
-    <div class="mb-12 md:mb-16">
+<section id="gallery" class="scroll-mt-16 bg-cream py-24 md:scroll-mt-24 md:py-32" aria-labelledby="gallery-heading">
+  <div class="mx-auto max-w-6xl px-5 md:px-10">
+    <div class="text-center">
       ${sectionLabel(gallery.label)}
-      <h2 id="gallery-heading" class="mt-6 font-heading text-4xl font-light text-ink md:text-5xl lg:text-6xl">${esc(gallery.heading)}</h2>
+      <h2 id="gallery-heading" class="mt-6 font-heading text-4xl italic text-ink md:text-5xl">${esc(gallery.heading)}</h2>
+      ${ornament}
     </div>
-    <ul class="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-4">${items}</ul>
+    <ul class="columns-2 gap-4 md:columns-3 md:gap-6">${items}</ul>
   </div>
 
   <dialog class="lightbox m-0 h-full max-h-none w-full max-w-none bg-ink/95 p-0 backdrop:bg-transparent" aria-label="${esc(gallery.heading)}" data-lightbox>

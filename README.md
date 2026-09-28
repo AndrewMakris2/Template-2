@@ -5,10 +5,14 @@ plain HTML + vanilla JS, Tailwind CSS v4 and Vite. There's no backend, CMS, or
 booking system: every "Book" button links out to the stylist's existing
 booking platform.
 
-This is a **reskin of Template 1** (Minimalist / Editorial): same components,
-with a different `theme.js` (warm blush neutrals, plum-brown, dusty rose accent,
-Playfair Display + DM Sans), `content.js`, and images. No component code differs
-from Template 1.
+This template has its **own design** ("Atelier"): a centered logo with split
+navigation, a split hero with an arched portrait, a circular about portrait,
+a staggered masonry gallery, services framed like a wedding menu, a
+one-at-a-time testimonial switcher, and a centered contact card.
+
+All five templates share the **same `content.js` format**, so a client's content
+can be moved into any of the designs unchanged. Each template has its own
+components.
 
 ---
 
