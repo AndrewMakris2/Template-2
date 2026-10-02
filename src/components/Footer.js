@@ -30,7 +30,7 @@ export function Footer({ business, contact, social, footer }) {
       <p><a href="mailto:${esc(contact.email)}" class="text-on-ink hover:text-accent">${esc(contact.email)}</a> &middot; <a href="${esc(telHref(contact.phone))}" class="text-on-ink hover:text-accent">${esc(contact.phone)}</a></p>
     </address>
     <div class="mt-14 flex flex-col items-center gap-4 border-t border-on-ink/15 pt-8 text-xs sm:flex-row sm:justify-between">
-      <p>&copy; ${year} ${esc(footer.copyrightName)}. ${esc(footer.copyrightSuffix)}</p>
+      <p>&copy; ${year} ${esc(footer.copyrightName)}. ${esc(footer.copyrightSuffix)} <a href="/privacy/" class="underline underline-offset-4">${esc(footer.privacyLabel)}</a></p>
       <a href="#top" class="inline-flex items-center gap-2 uppercase tracking-[0.2em] text-on-ink hover:text-accent">${esc(footer.backToTopLabel)} ${icon('arrowUp', 'h-4 w-4')}</a>
     </div>
   </div>
